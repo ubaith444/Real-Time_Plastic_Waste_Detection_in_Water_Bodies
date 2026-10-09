@@ -1,0 +1,10 @@
+names:
+  0: plastic_bottle
+  1: plastic_bag
+  2: plastic_container
+  3: fishing_net_rope
+  4: micro_macro_fragment
+path: D:\Real-Time Plastic Waste Monitoring System\data\datasets\evaluation_splits
+test: underwater/images
+train: webcam/images
+val: boat/images

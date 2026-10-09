@@ -1,0 +1,10 @@
+names:
+  0: plastic_bottle
+  1: plastic_bag
+  2: plastic_packaging
+  3: plastic_fragment
+  4: other_floating_waste
+path: D:\Real-Time Plastic Waste Monitoring System\data\datasets\harmonized_splits
+test: unseen_coastal/images
+train: unseen_lake/images
+val: unseen_river/images

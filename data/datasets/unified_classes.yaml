@@ -1,0 +1,132 @@
+# Unified Aquatic Plastic Waste Ontology & Dataset Strategy
+# Standardizes class labels across FloW, FloPWD 2025, FML, DeepPlastic, and Roboflow Floating Waste
+
+version: "2.0.0"
+date_updated: "2026-10-09"
+
+unified_classes:
+  0:
+    name: "plastic_bottle"
+    description: "PET bottles, beverage containers, caps, and floating bottle clusters."
+    color_rgb: [37, 99, 235]      # Blue
+  1:
+    name: "plastic_bag"
+    description: "Single-use polythene bags, grocery sacks, thin film sheets."
+    color_rgb: [13, 148, 136]     # Teal
+  2:
+    name: "plastic_packaging"
+    description: "Styrofoam food packaging, cups, takeaway containers, tetra packs, canisters."
+    color_rgb: [217, 119, 6]      # Amber
+  3:
+    name: "plastic_fragment"
+    description: "Rigid plastic shards, weathered pieces, micro and macro plastic fragments."
+    color_rgb: [147, 51, 234]     # Purple
+  4:
+    name: "other_floating_waste"
+    description: "Ghost fishing nets, ropes, tangled lines, buckets, and unclassified marine litter."
+    color_rgb: [220, 38, 38]      # Red (Critical hazard for marine fauna)
+
+datasets_catalog:
+  flow_dataset:
+    title: "FloW Dataset"
+    best_starting_point: true
+    focus: "Floating waste in rivers, lakes, and canals"
+    features: "Image data + multimodal image-radar dataset from unmanned surface vehicles"
+    source_url: "https://github.com/ORCAUBOAT/FloW-Dataset"
+    license: "CC BY-NC-SA 4.0"
+    operating_environment: "lake_river_boat"
+    raw_to_unified:
+      "bottle": "plastic_bottle"
+      "plastic_bag": "plastic_bag"
+      "plastic_container": "plastic_packaging"
+      "bucket": "plastic_packaging"
+      "ball": "plastic_fragment"
+
+  flowpwd_2025:
+    title: "FloPWD 2025 Dataset"
+    focus: "Aerial floating plastic waste from Dal Lake, India"
+    features: "Approximately 2,000 aerial images with polygon segmentation masks"
+    source_url: "https://data.mendeley.com/datasets/znxjncgjkc/2"
+    license: "CC BY 4.0"
+    operating_environment: "aerial_drone"
+    raw_to_unified:
+      "plastic_bottle": "plastic_bottle"
+      "polythene_bag": "plastic_bag"
+      "plastic_wrapper": "plastic_bag"
+      "tetra_pack": "plastic_packaging"
+      "plastic_fragment": "plastic_fragment"
+
+  fml_dataset:
+    title: "Floating Marine Litter (FML) Dataset"
+    focus: "Water-level imagery from surface vessel perspective"
+    features: "Approximately 5,300 images and 13,000 bounding-box annotations"
+    source_url: "https://github.com/glazzerini/fml"
+    doi: "https://doi.org/10.17882/106148"
+    license: "MIT License"
+    operating_environment: "boat_surface"
+    raw_to_unified:
+      "PET": "plastic_bottle"
+      "plastic_bag": "plastic_bag"
+      "polystyrene": "plastic_packaging"
+      "packaging": "plastic_packaging"
+      "debris": "plastic_fragment"
+
+  deepplastic_dataset:
+    title: "DeepPlastic Dataset"
+    focus: "Marine plastic imagery (Lake Tahoe, San Francisco Bay, Bodega Bay)"
+    features: "Subsurface and surface water imagery across depth zones"
+    source_url: "https://zenodo.org/records/5562940"
+    license: "Open Data Commons Open Database License (ODbL)"
+    operating_environment: "marine_underwater"
+    raw_to_unified:
+      "plastic": "plastic_fragment"
+      "plastic_bottle": "plastic_bottle"
+      "plastic_bag": "plastic_bag"
+      "net": "other_floating_waste"
+      "rope": "other_floating_waste"
+
+  roboflow_floating_waste:
+    title: "Floating Waste — Roboflow 100VL"
+    focus: "High-resolution labeled bottles, bags, cups, containers, packaging"
+    features: "820 annotated images; check image diversity before merging"
+    source_url: "https://universe.roboflow.com/roboflow100vl-full/floating-waste-jlih"
+    license: "CC BY 4.0"
+    operating_environment: "surface_close_range"
+    raw_to_unified:
+      "bottle": "plastic_bottle"
+      "plastic-bottle": "plastic_bottle"
+      "bag": "plastic_bag"
+      "plastic-bag": "plastic_bag"
+      "cup": "plastic_packaging"
+      "container": "plastic_packaging"
+      "packaging": "plastic_packaging"
+      "waste": "other_floating_waste"
+
+decision_matrix:
+  lake_or_river_camera:
+    recommended: ["flow_dataset", "local_footage"]
+    rationale: "FloW provides inland river and canal conditions; supplement with local river capture for exact camera angles."
+  drone_mapping:
+    recommended: ["flowpwd_2025"]
+    rationale: "FloPWD provides Dal Lake aerial perspectives with polygon masks for nadir UAV views."
+  boat_or_water_level:
+    recommended: ["fml_dataset"]
+    rationale: "FML provides 5,300+ images from water-surface vessel perspective with waves and hull motion."
+  broad_marine_water:
+    recommended: ["deepplastic_dataset"]
+    rationale: "DeepPlastic spans marine bays and lakes, including subsurface clarity variations."
+  specific_bottle_bag:
+    recommended: ["roboflow_floating_waste"]
+    rationale: "Dense annotations for packaging and bottles; verify diversity against local waters."
+  india_focused_deployment:
+    recommended: ["flow_dataset", "flowpwd_2025", "local_footage"]
+    rationale: "Combines inland water conditions with Dal Lake aerial imagery, grounded by local water testing."
+
+preparation_rules:
+  annotation_formats:
+    detection: "YOLO bounding box (class_id x_center y_center width height) normalized 0 to 1"
+    segmentation: "YOLO polygon (class_id x1 y1 x2 y2 ... xn yn) for plastic surface area estimation"
+  leakage_prevention:
+    rule: "Split datasets strictly by source video or capture session ID. Never split consecutive video frames across train and test sets to prevent overly optimistic evaluation."
+  unseen_evaluation:
+    rule: "Evaluate model separately on unseen lake, river, and coastal test sets to measure real-world out-of-domain generalization."

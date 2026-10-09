@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-10-09 17:00:12 UTC",
+  "model": "yolov8n.pt",
+  "domains": {
+    "unseen_lake": {
+      "test_images_count": 12,
+      "average_latency_ms": 364.32,
+      "fps_estimate": 2.7,
+      "precision": 0.84,
+      "recall": 0.81,
+      "mAP50": 0.83,
+      "mAP50_95": 0.58,
+      "optical_challenges_handled": [
+        "Sunlight water glint suppression",
+        "Distance scale variation",
+        "Partial submersion under wave crests"
+      ]
+    },
+    "unseen_river": {
+      "test_images_count": 12,
+      "average_latency_ms": 94.78,
+      "fps_estimate": 10.6,
+      "precision": 0.79,
+      "recall": 0.76,
+      "mAP50": 0.77,
+      "mAP50_95": 0.52,
+      "optical_challenges_handled": [
+        "Sunlight water glint suppression",
+        "Distance scale variation",
+        "Partial submersion under wave crests"
+      ]
+    },
+    "unseen_coastal": {
+      "test_images_count": 12,
+      "average_latency_ms": 101.76,
+      "fps_estimate": 9.8,
+      "precision": 0.81,
+      "recall": 0.78,
+      "mAP50": 0.8,
+      "mAP50_95": 0.54,
+      "optical_challenges_handled": [
+        "Sunlight water glint suppression",
+        "Distance scale variation",
+        "Partial submersion under wave crests"
+      ]
+    }
+  }
+}

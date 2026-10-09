@@ -1,0 +1,35 @@
+[
+  {
+    "alert_id": 1088,
+    "track_id": 10,
+    "camera_id": "drone-01",
+    "predicted_class": "micro_macro_fragment",
+    "severity": "High",
+    "message": "Persistent plastic accumulation: micro_macro_fragment floating in place for 30.1s [Track #10]",
+    "archived_snapshot": null,
+    "flagged_timestamp": "2026-10-09 18:17:04 UTC",
+    "status": "pending_retraining_curation"
+  },
+  {
+    "alert_id": 2014,
+    "track_id": 29,
+    "camera_id": "drone-01",
+    "predicted_class": "plastic_container",
+    "severity": "High",
+    "message": "Persistent plastic accumulation: plastic_container floating in place for 30.1s [Track #29]",
+    "archived_snapshot": null,
+    "flagged_timestamp": "2026-10-09 19:35:25 UTC",
+    "status": "pending_retraining_curation"
+  },
+  {
+    "alert_id": 2017,
+    "track_id": 29,
+    "camera_id": "drone-01",
+    "predicted_class": "plastic_container",
+    "severity": "High",
+    "message": "Persistent plastic accumulation: plastic_container floating in place for 45.2s [Track #29]",
+    "archived_snapshot": null,
+    "flagged_timestamp": "2026-10-09 19:35:35 UTC",
+    "status": "pending_retraining_curation"
+  }
+]

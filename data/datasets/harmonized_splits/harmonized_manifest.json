@@ -1,0 +1,72 @@
+{
+  "pipeline_version": "2.0.0",
+  "leakage_prevention": "Sessions are split into train/val/test groups atomically.",
+  "ontology": {
+    "0": {
+      "name": "plastic_bottle",
+      "description": "PET bottles, beverage containers, caps, and floating bottle clusters.",
+      "color_rgb": [
+        37,
+        99,
+        235
+      ]
+    },
+    "1": {
+      "name": "plastic_bag",
+      "description": "Single-use polythene bags, grocery sacks, thin film sheets.",
+      "color_rgb": [
+        13,
+        148,
+        136
+      ]
+    },
+    "2": {
+      "name": "plastic_packaging",
+      "description": "Styrofoam food packaging, cups, takeaway containers, tetra packs, canisters.",
+      "color_rgb": [
+        217,
+        119,
+        6
+      ]
+    },
+    "3": {
+      "name": "plastic_fragment",
+      "description": "Rigid plastic shards, weathered pieces, micro and macro plastic fragments.",
+      "color_rgb": [
+        147,
+        51,
+        234
+      ]
+    },
+    "4": {
+      "name": "other_floating_waste",
+      "description": "Ghost fishing nets, ropes, tangled lines, buckets, and unclassified marine litter.",
+      "color_rgb": [
+        220,
+        38,
+        38
+      ]
+    }
+  },
+  "splits": {
+    "unseen_lake": 12,
+    "unseen_river": 12,
+    "unseen_coastal": 12
+  },
+  "training_subsets": {
+    "train_sessions": [
+      "session_lake_01",
+      "session_lake_02",
+      "session_river_01",
+      "session_coastal_01"
+    ],
+    "val_sessions": [
+      "session_lake_03",
+      "session_river_02"
+    ],
+    "test_unseen_sessions": [
+      "session_coastal_02",
+      "session_river_03"
+    ]
+  }
+}

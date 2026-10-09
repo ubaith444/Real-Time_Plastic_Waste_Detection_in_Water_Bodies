@@ -1,0 +1,190 @@
+{
+  "dataset_version": "1.0.0",
+  "unified_ontology": {
+    "0": {
+      "name": "plastic_bottle",
+      "description": "PET bottles, beverage containers, caps, and floating bottle clusters.",
+      "color_rgb": [
+        37,
+        99,
+        235
+      ]
+    },
+    "1": {
+      "name": "plastic_bag",
+      "description": "Single-use thin film bags, grocery sacks, wrappers, and floating sheeting.",
+      "color_rgb": [
+        13,
+        148,
+        136
+      ]
+    },
+    "2": {
+      "name": "plastic_container",
+      "description": "Styrofoam food packaging, cups, takeaway boxes, canisters, jugs.",
+      "color_rgb": [
+        217,
+        119,
+        6
+      ]
+    },
+    "3": {
+      "name": "fishing_net_rope",
+      "description": "Ghost fishing nets, polypropylene ropes, nylon twines, and tangled lines.",
+      "color_rgb": [
+        220,
+        38,
+        38
+      ]
+    },
+    "4": {
+      "name": "micro_macro_fragment",
+      "description": "Rigid plastic shards, unidentifiable fragments, weathered debris.",
+      "color_rgb": [
+        147,
+        51,
+        234
+      ]
+    }
+  },
+  "environments": {
+    "webcam": {
+      "name": "Surface Test Tank & Laboratory Webcam",
+      "challenges": [
+        "Surface glare",
+        "Controlled reflections",
+        "Near-range scale"
+      ],
+      "target_resolution": [
+        1280,
+        720
+      ],
+      "expected_classes": [
+        "plastic_bottle",
+        "plastic_bag",
+        "plastic_container"
+      ]
+    },
+    "drone": {
+      "name": "Dal Lake & River High-Altitude Drone Feed",
+      "challenges": [
+        "Tiny bounding boxes",
+        "Nadir perspective",
+        "Wind ripple texture"
+      ],
+      "target_resolution": [
+        1920,
+        1080
+      ],
+      "expected_classes": [
+        "plastic_bag",
+        "plastic_bottle",
+        "micro_macro_fragment"
+      ]
+    },
+    "boat": {
+      "name": "Coastal Marine & Harbor Boat-Mounted Camera",
+      "challenges": [
+        "Wave pitch and roll",
+        "Salt spray on lens",
+        "Dynamic sun glint"
+      ],
+      "target_resolution": [
+        1280,
+        720
+      ],
+      "expected_classes": [
+        "plastic_bottle",
+        "plastic_container",
+        "fishing_net_rope"
+      ]
+    },
+    "underwater": {
+      "name": "Subsurface ROV & Marine Coral Reef Camera",
+      "challenges": [
+        "Severe blue/cyan light attenuation",
+        "Turbid particulate floaters",
+        "Low contrast"
+      ],
+      "target_resolution": [
+        1280,
+        720
+      ],
+      "expected_classes": [
+        "fishing_net_rope",
+        "plastic_bag",
+        "micro_macro_fragment"
+      ]
+    }
+  },
+  "splits": {
+    "webcam": [
+      {
+        "image": "sample_webcam_01.jpg",
+        "label": "sample_webcam_01.txt",
+        "boxes": 2
+      },
+      {
+        "image": "sample_webcam_02.jpg",
+        "label": "sample_webcam_02.txt",
+        "boxes": 2
+      },
+      {
+        "image": "sample_webcam_03.jpg",
+        "label": "sample_webcam_03.txt",
+        "boxes": 2
+      }
+    ],
+    "drone": [
+      {
+        "image": "sample_drone_01.jpg",
+        "label": "sample_drone_01.txt",
+        "boxes": 2
+      },
+      {
+        "image": "sample_drone_02.jpg",
+        "label": "sample_drone_02.txt",
+        "boxes": 2
+      },
+      {
+        "image": "sample_drone_03.jpg",
+        "label": "sample_drone_03.txt",
+        "boxes": 2
+      }
+    ],
+    "boat": [
+      {
+        "image": "sample_boat_01.jpg",
+        "label": "sample_boat_01.txt",
+        "boxes": 2
+      },
+      {
+        "image": "sample_boat_02.jpg",
+        "label": "sample_boat_02.txt",
+        "boxes": 2
+      },
+      {
+        "image": "sample_boat_03.jpg",
+        "label": "sample_boat_03.txt",
+        "boxes": 2
+      }
+    ],
+    "underwater": [
+      {
+        "image": "sample_underwater_01.jpg",
+        "label": "sample_underwater_01.txt",
+        "boxes": 2
+      },
+      {
+        "image": "sample_underwater_02.jpg",
+        "label": "sample_underwater_02.txt",
+        "boxes": 2
+      },
+      {
+        "image": "sample_underwater_03.jpg",
+        "label": "sample_underwater_03.txt",
+        "boxes": 2
+      }
+    ]
+  }
+}
